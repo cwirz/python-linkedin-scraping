@@ -7,7 +7,7 @@ dependencies = ['click', 'dpath', 'scrapy', 'tablib']
 
 setup(
     name='linkedin-scraping',
-    version='0.1.0',
+    version='0.1.1',
     url='http://gogs.pyango.ch/cwirz/python-linkedin-scraping.git',
     license='BSD',
     author='Colin Wirz',
