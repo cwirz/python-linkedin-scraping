@@ -63,8 +63,8 @@ class LinkedInPeopleSpider(InitSpider):
                 continue
 
             item = User(
-                first_name=person_dict.get("firstName", None),
-                last_name=person_dict.get("lastName", None),
+                first_name=person_dict.get("firstName", "LinkedIn"),
+                last_name=person_dict.get("lastName", "Member"),
             )
 
             # Try to split the position and company
@@ -78,7 +78,11 @@ class LinkedInPeopleSpider(InitSpider):
                 item['company'] = position_company[2]
 
             if person_dict.get("fmt_location", None):
-                location = person_dict["fmt_location"].partition(" und Umgebung,")
+                city_country = person_dict["fmt_location"]
+                if " und Umgebung," in city_country:
+                    location = person_dict["fmt_location"].partition(" und Umgebung,")
+                else:
+                    location = person_dict["fmt_location"].partition(" Area,")
                 item['city'] = location[0]
                 item["country"] = location[2]
 
